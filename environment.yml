@@ -799,7 +799,7 @@ dependencies:
       - httpx2==2.13.0
       - huggingface-hub==1.32.0
       - hyperframe==6.1.0
-      - idna==3.11
+      - idna==3.20
       - imagecodecs==2025.11.11
       - imageio==2.37.0
       - imagesize==1.4.1
@@ -829,7 +829,7 @@ dependencies:
       - jsonschema==4.25.1
       - jsonschema-specifications==2025.9.1
       - jupyter-client==8.7.0
-      - jupyter-core==5.8.1
+      - jupyter-core==5.9.1
       - jupyter-events==0.12.0
       - jupyter-lsp==2.3.0
       - jupyter-server==2.17.0
@@ -849,7 +849,7 @@ dependencies:
       - lazy-loader==0.4
       - levenshtein==0.27.3
       - libpysal==4.13.0
-      - litellm==1.101.0
+      - litellm==1.102.0
       - llvmlite==0.46.0
       - locket==1.0.0
       - lxml==6.0.2
