@@ -67,4 +67,3 @@ Working through this assignment made concrete a lesson that is easy to state and
 ## Secrets hygiene
 
 I confirm that no API keys, tokens, or other credentials appear anywhere in the committed repository. The `.gitignore` excludes `.env` and Python cache files, and the notebook reads the key exclusively via `python-dotenv` from the local, uncommitted `.env` file.
->>>>>>> 9bdee9d (Upload corrected Assignment 1 files: README, environment, and notebook)
