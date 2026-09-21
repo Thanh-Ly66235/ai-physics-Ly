@@ -26,7 +26,7 @@ Then I committed and then pushed to git:
 
 2. **Create the environment** (conda is recommended; the notebook was developed on Python 3.13 in the `base` conda environment described by `environment.yml`):
    ```bash
-   conda create -n ai-physics python=3.11
+   conda create -n ai-physics python=3.13
    conda activate ai-physics  
    ``` 
 
@@ -48,7 +48,7 @@ The enviornment is then exported and then committed with:
    ``` 
 Next,  Create a file named `.env` in the repository root containing the Anthropic API key:
    ```bash
-   echo 'ANTHROPIC_API_KEY=key' > .env
+   echo 'ANTHROPIC_API_KEY=sk-ant-real-key-here' > .env
    ```
 
 Then I created a ipynb file at the same directory, and work on it. The notebook contains the code that has the function as described previously.
@@ -63,3 +63,10 @@ Finally, the README file, ipynb, and environment.yml files got pushed from local
 ## Reflection on LLM reliability in a physics contex
 
 Working through this assignment made concrete a lesson that is easy to state and hard to internalize: an LLM's fluency is uncorrelated with its correctness, and its step-by-step reasoning is no guarantee of soundness. The model handled canonical, time-stable quantities well as it computed the Schwarzschild radius of a 10 M black hole correctly (≈ 29.5 km, matching the textbook value from r_s = 2GM/c²) and gave a competent qualitative description of the immersed boundary method in the context of cell blebbing. But when asked to calculate the dimensionless gravitational-wave strain amplitude h for a binary black hole merger with a 30 M chirp mass at 400 Mpc, the model produced a response that is a textbook example of a pure mathematical hallucination. Three distinct failures compound in that single answer. First, the formula itself is wrong: the model wrote h = (4/c⁴)(G³/d_L)M_c⁵(πf_GW)^{10/3}, which is dimensionally inconsistent, whereas the correct standard quadrupole formula is h = (4/d_L)(GM_c/c²)^{5/3}(πf_GW/c)^{2/3}. Second, the arithmetic is fabricated even on its own terms: the final division step shows (1.21734 × 10¹⁵⁷)/(9.93154 × 10⁵⁸), which should yield a result on the order of 10⁹⁸, yet the model reports h = 1.226 × 10⁻²¹. Third, and most revealing, the model landed on a "plausible answer" magnet: 10⁻²¹ is exactly the strain magnitude ubiquitously quoted in LIGO press releases and introductory articles about GW150914. The model's token-prediction attention heads were pulled toward that statistical anchor, and it back-fitted a fake formula and fake arithmetic to reach the answer it already "knew" it wanted. This is the most dangerous failure mode in AI-assisted physics: not a wildly wrong answer, but a confidently structured, step-by-step, plausibly-magnituded answer that passes a casual sanity check while being dimensionally, arithmetically, and physically wrong at every stage. The practical takeaway is that LLM outputs must be treated as hypotheses to be checked, never as sources. Step-by-step reasoning does not guarantee correctness (it can be as fabricated as the final answer). Every formula must be verified dimensionally, every numerical claim must be traced to a primary reference, and any quantity that is frontier, recent, or statistically framed should be assumed unreliable until independently confirmed. The environment built in this assignment, with secrets managed properly, and dependencies pinned, which exists precisely so that every number entering a calculation has a traceable provenance.
+<<<<<<< HEAD
+=======
+
+## Secrets hygiene
+
+I confirm that no API keys, tokens, or other credentials appear anywhere in the committed repository. The `.gitignore` excludes `.env` and Python cache files, and the notebook reads the key exclusively via `python-dotenv` from the local, uncommitted `.env` file.
+>>>>>>> 9bdee9d (Upload corrected Assignment 1 files: README, environment, and notebook)
